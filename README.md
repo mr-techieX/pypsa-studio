@@ -87,3 +87,9 @@ replacement or cross-solver equivalence certification.
 This checkout was seeded from the verified v1.3.1 source package. Detailed
 validation logs and manifests are retained with the original distribution,
 not in this source checkout.
+
+## License
+
+Original PyPSA Studio material is licensed under the [MIT License](LICENSE).
+The bundled PGLib demo data remains under CC BY 4.0. See
+[third-party notices](THIRD_PARTY_NOTICES.md) for attribution and scope.

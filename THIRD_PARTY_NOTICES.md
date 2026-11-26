@@ -1,4 +1,7 @@
-# Third-party data notice
+# Third-party notices
+
+The repository's [MIT license](LICENSE) applies to original PyPSA Studio
+material. Third-party material retains its original license.
 
 ## PGLib OPF IEEE 14-bus numeric subset
 
@@ -46,6 +49,39 @@ Only data are extracted; no PGLib software is copied. MATPOWER's software BSD
 license was **not** used to justify case-data redistribution: it explicitly
 excludes its case files. The remaining demos are authored deterministic
 synthetic use cases, not third-party utility datasets.
+
+## PyPSA attribute reference
+
+Studio's `Attribute-Info/` guides refer to the
+[PyPSA v1.4.0 schema and documentation](https://github.com/PyPSA/PyPSA/tree/v1.4.0).
+Any upstream PyPSA material reproduced or adapted in these guides retains the
+[upstream MIT license](https://github.com/PyPSA/PyPSA/blob/v1.4.0/LICENSE),
+copyright (c) 2015–2026 PyPSA contributors. This notice does not establish the
+provenance of every passage; confirm that review before public distribution.
+
+```text
+MIT License
+
+Copyright (c) 2015-2026 PyPSA contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## Dependency distribution remains a separate review
 
