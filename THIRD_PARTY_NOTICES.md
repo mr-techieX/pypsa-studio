@@ -52,12 +52,12 @@ synthetic use cases, not third-party utility datasets.
 
 ## PyPSA attribute reference
 
-Studio's `Attribute-Info/` guides refer to the
+Pranav Swaroop Nayak wrote Studio's `Attribute-Info/` guides as plain-language
+help for Studio users. They are not official PyPSA documentation. They refer to the
 [PyPSA v1.4.0 schema and documentation](https://github.com/PyPSA/PyPSA/tree/v1.4.0).
 Any upstream PyPSA material reproduced or adapted in these guides retains the
 [upstream MIT license](https://github.com/PyPSA/PyPSA/blob/v1.4.0/LICENSE),
-copyright (c) 2015–2026 PyPSA contributors. This notice does not establish the
-provenance of every passage; confirm that review before public distribution.
+copyright (c) 2015–2026 PyPSA contributors.
 
 ```text
 MIT License
