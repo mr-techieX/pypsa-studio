@@ -1,0 +1,23 @@
+{
+  "source": "https://github.com/power-grid-lib/pglib-opf/blob/dc6be4b2f85ca0e776952ec22cbd4c22396ea5a3/pglib_opf_case14_ieee.m",
+  "version": "PGLib OPF v23.07 (2023-07-23)",
+  "attribution": "Copyright (c) 1999 Richard D. Christie, University of Washington; IEEE PES Power Grid Library contributors.",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "changes": "Numeric subset for a lossless DC adaptation: demands, active generator maxima/linear offers, branch x/tap/rateA retained. Source resistance, shunts, reactive power and voltage magnitudes omitted. Uniform 110 kV normalization; effective Line x = source x * tap * 110^2 / 100 ohm. A nonzero r=x/100 placeholder satisfies PyPSA strict consistency but is unused by this lossless solve. Source 30-degree branch angle limits retained. Ratings are PGLib model estimates, not measured equipment ratings. Not an AC benchmark reproduction.",
+  "base_mva": 100,
+  "load_mw": [0, 21.7, 94.2, 47.8, 7.6, 11.2, 0, 0, 29.5, 9, 3.5, 6.1, 13.5, 14.9],
+  "generators_bus_pmax_cost": [[1, 340, 7.920951], [2, 59, 23.269494], [3, 0, 0], [6, 0, 0], [8, 0, 0]],
+  "branches_from_to_x_tap_rate": [
+    [1, 2, 0.05917, 1, 472], [1, 5, 0.22304, 1, 128],
+    [2, 3, 0.19797, 1, 145], [2, 4, 0.17632, 1, 158],
+    [2, 5, 0.17388, 1, 161], [3, 4, 0.17103, 1, 160],
+    [4, 5, 0.04211, 1, 664], [4, 7, 0.20912, 0.978, 141],
+    [4, 9, 0.55618, 0.969, 53], [5, 6, 0.25202, 0.932, 117],
+    [6, 11, 0.1989, 1, 134], [6, 12, 0.25581, 1, 104],
+    [6, 13, 0.13027, 1, 201], [7, 8, 0.17615, 1, 167],
+    [7, 9, 0.11001, 1, 267], [9, 10, 0.0845, 1, 325],
+    [9, 14, 0.27038, 1, 99], [10, 11, 0.19207, 1, 141],
+    [12, 13, 0.19988, 1, 99], [13, 14, 0.34802, 1, 76]
+  ]
+}

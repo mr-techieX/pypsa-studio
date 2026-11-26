@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">PyPSA Studio</title>
+  <desc id="desc">Navy and teal PS ribbons with a gold terminal on a cream tile. Clean vector reconstruction of the selected Programmable Power concept.</desc>
+  <rect width="256" height="256" rx="40" fill="#f7f3e8"/>
+  <path fill="#15384a" fill-rule="evenodd" d="
+    M84 41 H171
+    C198 41 219 62 219 86
+    C219 91 218 96 217 99
+    H180 V123 H94
+    C80 123 70 135 70 150
+    V182 H35 V89
+    C35 62 57 41 84 41 Z
+    M85 74 H172
+    C186 74 187 99 172 99
+    H114
+    C89 99 77 106 65 133
+    V90
+    C65 79 73 74 85 74 Z"/>
+  <path fill="#e6b552" d="
+    M180 99 H217
+    C214 110 207 123 200 123
+    H180 Z"/>
+  <path fill="#287e71" d="
+    M105 136 H176
+    C203 136 221 153 221 181
+    C221 208 203 229 176 229
+    H42
+    C42 211 52 197 67 197
+    H170
+    C179 197 185 191 185 182
+    C185 170 178 161 167 161
+    H104
+    C96 161 90 155 90 148
+    C90 141 96 136 105 136 Z
+    M70 148
+    C74 165 91 174 100 174
+    H141
+    C154 174 161 175 165 182
+    H70 Z"/>
+</svg>

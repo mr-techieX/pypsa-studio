@@ -1,0 +1,6 @@
+# Development baseline; do not upgrade the parent learning environment implicitly.
+pypsa==1.4.0
+linopy==0.10.1
+highspy==1.15.1
+pandas==3.1.1
+PySide6==6.12.0
