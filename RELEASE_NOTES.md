@@ -1,20 +1,42 @@
-# PyPSA Studio v1.3.1
+# PyPSA Studio release notes
 
-- New run folders organize JSON under `metadata/` and LP/MPS exports under
-  `formulation/`. [Run file guide](docs/RUN_FILES.md). Older runs are unchanged.
+## v1.3.1 Preview — initial GitHub feature baseline
 
-- Saved Studio runs and standalone NetCDF archives, including Python replay,
-  use the same output-only Solution Explorer. Inputs stay in the model views.
-- The browsed-run list no longer exposes unused piecewise-cost placeholders
-  or uncomputed all-zero prices from confirmed HiGHS integer runs. Genuine
-  zero results remain queryable. An archive cannot show an output omitted
-  during export.
-- Older dashboards that request inputs are rejected with the property names;
-  saved definitions and current query tabs are preserved.
+This entry records the capabilities available in the first GitHub preview, including features developed before the repository was published. Future entries should list only changes since the preceding release, rather than repeating this baseline.
 
-See [NetCDF results](docs/NETCDF_RESULTS.md). Validation evidence is retained
-with the original distribution.
-No historical runs, reports, or exports were rewritten. This is a native-only
-source release; no PLEXOS integration or new installer is included.
+### Project and model editing
 
-- Quoted the chart canvas font family and added a sans-serif fallback to avoid font warnings.
+- **Local projects:** Create, save, and reopen SQLite projects. Open native project files from the File menu or by drag-and-drop.
+- **Schema-driven editing:** Define buses, generators, loads, lines, transformers, links, storage, and other supported PyPSA components. Edit properties in the object inspector or use the spreadsheet for bulk edits and TSV copy/paste.
+- **Time-series inputs:** Configure snapshots, import CSV profiles, and review timestamp alignment before applying data. Sequential runs support explicitly repeating a daily profile.
+- **Advanced modeling:** Configure supported unit-commitment and ramping constraints, snapshot and investment-period weights, and supported piecewise cost and efficiency curves.
+- **Guided modeling:** Use built-in demos, plain-language attribute help (F1), validation, and read-only diagnostics for model and saved-run issues.
+- **Editing safeguards:** Use model undo/redo, draft protections, local project backups, and recovery of applied changes.
+
+### Network visualization
+
+- **Interactive schematic:** View buses, branches, and attached assets with carrier badges. Pan, zoom, fit, filter, locate objects, and save or reset layouts without changing the model topology.
+- **Saved-run flow overlays:** Inspect a frozen network at a selected snapshot and display solved active-power flows. Highlight passive-branch use of the modeled linear flow bound; this is not AC thermal loading.
+
+### Solves and reproducibility
+
+- **Single and sequential execution:** Solve with PyPSA, Linopy, and HiGHS. Sequential mode solves separate windows and carries supported operating states forward; it does not compute a single full-horizon optimum.
+- **Scenarios and batch runs:** Define named variants, freeze their effective inputs, and run them as a batch without replacing the base project.
+- **Run history and artifacts:** Reopen frozen inputs and results without solving again. New runs organize JSON under `metadata/`, optional LP/MPS files and symbol maps under `formulation/`, and sequential windows under `steps/`. Older runs remain readable without migration.
+- **Formulation and numerical checks:** Export the actual LP or MPS formulation when requested, generate a readable annotation using its symbol map, and retain solver logs and post-solve numerical checks.
+- **Standalone Python replay:** Export a `model.py` for one solve or a `run.py` plus step scripts for sequential replay. Each sequential replay creates a new folder, retains per-step outputs, and publishes a combined `solution.nc` only after all steps and assembly succeed.
+
+### Results and reporting
+
+- **Output-only Solution Explorer:** Query solved dispatch, line flows, storage levels, prices, commitment status, and optimized capacities where available. The selector excludes model inputs and known unused placeholders without treating genuine zeros as missing.
+- **Portable NetCDF viewing:** Open a standalone `.nc` from the File menu or by drag-and-drop. Browse stored outputs read-only without the project database or CSV sidecars. Outputs omitted from the archive are not reconstructed.
+- **Tables and charts:** Filter by snapshot and object, switch table layouts, sort results, pin queries, and zoom or pan chart timelines. Export the queried data to CSV.
+- **Calendar summaries:** Aggregate supported quantities by hour, day, week, month, or year with valid weights and units. Optionally generate CSV reports and an HTML index after a run.
+- **Saved studies and comparisons:** Restore saved dashboards, compare compatible frozen runs, and analyze energy, duration curves, and storage. Export charts and supported study reports.
+
+### Desktop and preview scope
+
+- **Desktop controls:** Light, Dark, and System themes; keyboard shortcuts for common project and editing actions; and a chart-font fallback for Windows.
+- **Source preview:** Requires a compatible Python environment. No bundled runtime, standalone installer, or PLEXOS import/export is included. Linear optimization results do not establish AC feasibility or engineering suitability.
+
+See the [README](README.md) for setup and a first study, the [run file guide](docs/RUN_FILES.md) for artifact locations, and the [Python replay guide](docs/PYTHON_REPLAY.md) for replay instructions.
