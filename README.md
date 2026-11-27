@@ -1,95 +1,80 @@
-# PyPSA Studio v1.3.1
+# PyPSA Studio
 
-Local PySide6/Qt Quick + PyPSA 1.4.0 + HiGHS desktop build, based on the
-v1.2.0 native source release. **PLEXOS interoperability is
-excluded from this build.** RawBuild development remains separate.
+**A desktop workbench for building, solving, and exploring energy-system models with PyPSA.**
 
-## Start from this repository
+PyPSA Studio brings model editing, network inspection, optimization, and results analysis into one local application. Use it to study dispatch, storage operation, and network constraints without writing a Python script for every run. When you need a script, Studio can export one for standalone replay.
 
-From this directory, use an existing environment with the dependencies in
-`requirements.txt`. For the checkout inside the PyPSA workspace:
+[Download the source preview](https://github.com/mr-techieX/pypsa-studio/releases/tag/v1.3.1-preview) · [Release notes](RELEASE_NOTES.md) · [MIT license](LICENSE)
 
-```powershell
-& '..\EnEx\Scripts\python.exe' -m energy_gui
-```
+![PyPSA Studio Network view showing buses, generators, and solved line flows in the three-node demo](docs/media/studio-network.png)
 
-The included `.cmd` and `.ps1` launchers retain the original release-folder
-layout assumption. For an independent checkout, use an environment that
-satisfies `requirements.txt` and launch from the repository root:
+*Network visualizer: follow solved active-power flows for a selected snapshot in the bundled Three-node dispatch lab.*
 
-```powershell
-# In this build's directory, using that environment's Python:
-python -m energy_gui
-```
+## What you can do
 
-The v1.3.1 application name isolates theme settings and applied-state recovery
-from RawBuild/v1.0.0. Curated F1 guides are bundled. Projects are saved where you
-choose; keep the matching `runs/` folder when moving a saved model.
+| Workflow | Capabilities |
+| --- | --- |
+| **Build** | Define buses, generators, loads, lines, transformers, links, and storage. Edit properties in forms or a spreadsheet, import CSV time profiles, and use built-in attribute help. |
+| **Inspect** | Explore the network schematic, review connections, and use model validation before solving. |
+| **Solve** | Run a single optimization or a sequential study that carries supported operating states between windows. Compare scenario runs and optionally export the LP or MPS formulation. |
+| **Analyze** | Query solved outputs such as dispatch, line flows, storage levels, and optimized capacity. Filter by time, pin views, chart results, and export CSV or calendar summaries. |
 
-## Included
+## What makes it useful
 
-- New run folders organize JSON under `metadata/` and LP/MPS exports under
-  `formulation/`. [Run file guide](docs/RUN_FILES.md). Older runs are unchanged.
+- **Revisit the model you actually solved.** Studio freezes a copy of the inputs with each run, so you can inspect past results without confusing them with later model edits.
+- **Share results without sharing the project.** Drop a standalone PyPSA `solution.nc` into Studio to query stored outputs read-only, without the original project database or CSV files.
+- **Replay beyond the desktop.** Export `model.py` for a single solve or `run.py` and step scripts for sequential execution. A successful sequential replay produces a combined `solution.nc` in a new replay folder.
+- **Keep the workflow local.** Projects use SQLite, solves run locally, and the demo library lets you explore the app without importing your own data.
 
-- The Solution Explorer lists only solved outputs, whether you Browse to a
-  Studio run or open a standalone `.nc`. It hides unused CSV placeholders but
-  preserves genuine zero results. Older dashboards that query model inputs
-  must be rebuilt with output properties; the saved definitions are unchanged.
+## Quick start
 
-- Drop a standalone PyPSA `.nc` or choose **File → Open results (.nc)…** to
-  query a read-only archive without companion files or changing your model.
-  See [Standalone NetCDF results](docs/NETCDF_RESULTS.md).
-- Newly exported sequential `run.py` publishes one shareable `solution.nc`
-  in a new `replay-*` folder after all steps succeed. Regenerate older
-  exports to get this behavior.
+The current preview is a **source distribution**, not an installer. The release was smoke-tested on Windows with Python 3.14 in an existing environment; a clean-machine installation was not verified.
 
-- **Save as Python run** in Runs: export one standalone model script or a
-  sequential runner plus one model script per step. See
-  [Python replay](docs/PYTHON_REPLAY.md).
+1. Download `pypsa-studio-1.3.1-preview-source.zip` from the [preview release](https://github.com/mr-techieX/pypsa-studio/releases/tag/v1.3.1-preview) and extract it, or clone this repository.
+2. From the extracted folder or repository root, run these commands in PowerShell:
 
-- All retained native modeling, component/schema editors, spreadsheet and profile
-  workflows, demo models, scenarios/batches, model Undo/Redo, recovery/backups,
-  saved studies/comparisons, analytics and native mathematical/report exports.
-- Atlas Light/Dark/System appearance and vector application/header icon.
-- H01–H10: configured sequential solves and state handoffs, explicit daily-profile
-  repetition, calendar reports, result listing/sorting/filtering, temporal queries
-  and chart timeline zoom/pan.
-- Expandable network playground, scrollbars, edge dragging, cursor-centered zoom,
-  view-only navigation/filtering and saved-layout compatibility.
-- Guarded native `.sqlite` file drag/drop, including safe URL handling and
-  already-open drop no-op; explicit File → Open still reloads through guards.
-- UI responsiveness correction: shared lightweight state; inert metadata does not
-  enter hot UI/history/spreadsheet copying paths.
-- Ctrl+N / Ctrl+O / Ctrl+S / model Ctrl+Z / Ctrl+Y or Ctrl+Shift+Z.
-  Editable text retains local Undo/Redo; busy/modal/draft protections apply.
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m energy_gui
+   ```
 
-See `RELEASE_NOTES.md` and the focused guides in `docs/`.
+   Use `python -m energy_gui` directly if you already have an environment with the listed dependencies. The bundled `.cmd` and `.ps1` launchers assume the original workspace layout.
 
-## Excluded / compatibility
+### Try your first study
 
-There is **no PLEXOS XML import, export, inspection or conversion-report command**.
-XML drops/open requests are rejected without replacing the current project.
-No PLEXOS converter/parser modules, XML seed, profile sidecars or sample source
-models are included. Native profile CSV import and LP/MPS/report exports remain.
+1. In **Overview**, choose **Load demo model…** and select a demo.
+2. Review the model in **Objects** or **Network**, then save it as a SQLite project.
+3. In **Runs**, choose an execution mode and select **Start**. Enable **Save as Python run** if you also want a standalone replay script.
+4. In **Results**, select an object and a solved output—for example, a generator and `p` for dispatch. Set a snapshot range and run the query to view the table or chart.
 
-Previously saved native SQLite models can still open; optional provenance is
-preserved as opaque metadata, not executed or offered as interoperability.
-Opening a SQLite does not certify its electrical validity or fix missing carriers.
-Use Validate and review assumptions before solving.
+To revisit a saved solve, select it from **Run history**. To open only the result archive, use **File → Open results (.nc)…**. When moving a Studio project, keep its SQLite file and accompanying `runs/` folder together.
 
-No user projects, saved runs, virtual environment or old experimental `.deb` are
-bundled. The Linux package recipe is retained but has not been built/validated
-for v1.3.1. This is not AC feasibility, engineering certification, a PLEXOS
-replacement or cross-solver equivalence certification.
+### Studio in action
 
-## Validation
+| Edit a model | Explore solved dispatch |
+| --- | --- |
+| [![Objects view showing generator selection and its property inspector](docs/media/studio-model-editor.png)](docs/media/studio-model-editor.png) | [![Results view showing three generator dispatch series across 24 snapshots](docs/media/studio-dispatch-results.png)](docs/media/studio-dispatch-results.png) |
+| Inspect and edit generator properties in **Objects**. | Compare hourly generator output in the **Results** chart. |
 
-This checkout was seeded from the verified v1.3.1 source package. Detailed
-validation logs and manifests are retained with the original distribution,
-not in this source checkout.
+## Technology stack
 
-## License
+| Layer | Technology |
+| --- | --- |
+| Desktop interface | Python, PySide6, and Qt Quick (QML) |
+| Energy-system modeling | [PyPSA](https://pypsa.org/) |
+| Optimization | [Linopy](https://linopy.readthedocs.io/) for model formulation; [HiGHS](https://highs.dev/) for solving |
+| Data handling and storage | pandas, SQLite project files, NetCDF solution archives, and CSV tables and reports |
 
-Original PyPSA Studio material is licensed under the [MIT License](LICENSE).
-The bundled PGLib demo data remains under CC BY 4.0. See
-[third-party notices](THIRD_PARTY_NOTICES.md) for attribution and scope.
+## Documentation
+
+- [Demo models](docs/DEMO_MODELS.md) and [network navigation](docs/NETWORK_PLAYGROUND.md)
+- [Run modes and sequential execution](docs/HORIZON_EXECUTION.md) and [run-folder structure](docs/RUN_FILES.md)
+- [Standalone NetCDF results](docs/NETCDF_RESULTS.md) and [calendar aggregation](docs/TEMPORAL_RESULTS.md)
+- [Standalone Python replay](docs/PYTHON_REPLAY.md)
+
+## Scope and license
+
+Studio supports linear energy-system optimization workflows. Its results do not certify AC feasibility or engineering suitability. Sequential runs solve separate windows with state handoffs, not one full-horizon optimum. Standalone archives can only show outputs stored in the file. This preview does not include PLEXOS import/export or a bundled runtime.
+
+Original PyPSA Studio material is licensed under the [MIT License](LICENSE). The bundled PGLib demo data remains under CC BY 4.0; see the [third-party notices](THIRD_PARTY_NOTICES.md).
